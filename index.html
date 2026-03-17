@@ -6,33 +6,65 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="bg-[#0f172a] font-poppins text-red min-h-screen">
+
+  <body class="bg-[#0f172a] font-poppins text-white min-h-screen">
+
     <div class="max-w-6xl mx-auto p-6">
-    <h1 class="text-3xl font-semibold mb-6">Weather Dashboard</h1>
 
-    <div class="flex gap-4 mb-6">
-      <input
-        type="text"
-        placeholder="Search City"
-        class="flex-1 p-3 rounded-xl bg-white/10 backdrop-blur-lg outline-none"
-      />
-    </div>
-    <button
-      class="py-3 rounded-xl bg-gradient-to-r from-[#4facfe] to-[#00f2fe]"
-    >
-      Search
-    </button>
+      <h1 class="text-3xl font-semibold mb-6">Weather Dashboard 🌤️</h1>
 
-    <!-- Weather Card -->
-     <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-<h2 class="text-xl mb-2">Banglore</h2>
-<p class="text-5xl font-bold">
-  28 C
-</p>
-<p class="text-gray-300">
-  Cloudy
-</p>
-     </div>
+      <!-- Search -->
+
+      <div class="flex flex-col sm:flex-row gap-4 mb-6">
+        <input
+          type="text"
+          placeholder="Search City"
+          class="flex-1 p-3 rounded-xl bg-white/10 backdrop-blur-lg outline-none"
+        />
+      </div>
+      <button
+        class="py-3 rounded-xl bg-gradient-to-r from-[#4facfe] to-[#00f2fe] w-full mb-2"
+      >
+        Search
+      </button>
+
+      <!-- Weather Card -->
+      <div
+        class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 m-2"
+      >
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+
+      <!-- Left -->
+        <div>
+          <h2 class="text-2xl font-semibold">Bangalore</h2>
+          <p class="text-5xl font-bold my-2">28°C</p>
+          <p class="text-gray-300">Cloudy</p>
+        </div>
+
+        <!-- Right Extra Info -->
+         <div class="grid grid-cols-2 gap-4 text-center">
+          <div>
+            <p class="text-gray-400">Humidity</p>
+            <p class="text-lg font-semibold">70%</p>
+          </div>
+          <div>
+            <p class="text-gray-400">Wind</p>
+            <p class="text-lg font-semibold">12 km/h</p>
+          </div>
+          <div>
+            <p class="text-gray-400">Feels Like</p>
+            <p class="text-lg font-semibold">30°C</p>
+          </div>
+          <div>
+            <p class="text-gray-400">Pressure</p>
+            <p class="text-lg font-semibold">1012 hPa</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 Days Forecast -->
+       <h2 class="text-xl mb-4">5-Day Forecast</h2>
+      </div>
     </div>
   </body>
 </html>
