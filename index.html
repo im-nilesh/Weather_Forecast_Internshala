@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="bg-gradient-to-br from-[#89f7fe] to-[#66a6ff] font-poppins text-gray-800 min-h-screen">
+<body class="font-poppins text-gray-800 min-h-screen">
 
   <div class="max-w-6xl mx-auto p-6">
 
@@ -16,10 +16,10 @@
 
     <!-- Search -->
 
-    <input type="text" placeholder="Search city..."
+    <input id="searchInput" type="text" placeholder="Search city..."
       class="flex-1 p-3 rounded-xl bg-white/70 backdrop-blur-lg outline-none shadow-md"/>
 
-    <button class="px-5 py-3 rounded-xl m-3 text-white bg-gradient-to-r from-[#4facfe] to-[#00f2fe] shadow-md">
+    <button onclick="handleSearch()" class="px-5 py-3 rounded-xl m-3 text-white bg-gradient-to-r from-[#4facfe] to-[#00f2fe] shadow-md">
       Search
     </button>
 
@@ -31,9 +31,9 @@
         <!-- Left -->
 
         <div>
-          <h2 class="text-2xl font-semibold text-gray-800">Bangalore</h2>
-          <p class="text-5xl font-bold my-2 text-gray-900">28°C</p>
-          <p class="text-gray-600">Cloudy</p>
+          <h2 id="cityName" class="text-2xl font-semibold text-gray-800">Bangalore</h2>
+          <p id="temperature" class="text-5xl font-bold my-2 text-gray-900">28°C</p>
+          <p id="condition" class="text-gray-600">Cloudy</p>
         </div>
 
         <!-- Right Extra Info -->
@@ -111,6 +111,8 @@
   </div>
   </div>
   </div>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
