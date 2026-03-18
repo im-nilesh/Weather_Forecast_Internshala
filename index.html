@@ -63,6 +63,24 @@
         }
       }
 
+      .cloud {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50px;
+        filter: blur(10px);
+        opacity: 0.6;
+        animation: moveCloud linear infinite;
+      }
+
+      @keyframes moveCloud {
+        0% {
+          transform: translateX(-200px);
+        }
+        100% {
+          transform: translateX(100vw);
+        }
+      }
+
       .glass {
         background: rgba(122, 119, 119, 0.15);
         backdrop-filter: blur(20px);
@@ -106,6 +124,12 @@
     <div
       id="sunGlow"
       class="hidden fixed top-10 right-10 w-40 h-40 rounded-full z-0"
+    ></div>
+
+    <!-- Cloudy -->
+    <div
+      id="cloudContainer"
+      class="fixed inset-0 pointer-events-none hidden z-0"
     ></div>
 
     <!-- ✅ MAIN CONTENT -->

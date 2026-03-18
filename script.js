@@ -5,10 +5,12 @@ function setWeatherTheme(condition) {
   const body = document.body;
   const rain = document.getElementById("rainContainer");
   const sun = document.getElementById("sunGlow");
+  const cloud = document.getElementById("cloudContainer");
 
   // Reset
   rain.classList.add("hidden");
   sun.classList.add("hidden");
+  cloud.classList.add("hidden");
 
   if (condition === "Rain") {
     body.style.background =
@@ -23,7 +25,10 @@ function setWeatherTheme(condition) {
     sun.classList.remove("hidden");
   } else if (condition === "Clouds") {
     body.style.background =
-      "linear-gradient(to bottom right, #d7d2cc, #304352)";
+      "linear-gradient(to bottom right, #bdc3c7, #2c3e50)";
+
+    cloud.classList.remove("hidden");
+    createClouds();
   } else {
     body.style.background =
       "linear-gradient(to bottom right, #89f7fe, #66a6ff)";
@@ -191,6 +196,27 @@ function createRain() {
     drop.style.opacity = Math.random();
 
     container.appendChild(drop);
+  }
+}
+
+//UI for Clouds
+function createClouds() {
+  const container = document.getElementById("cloudContainer");
+  container.innerHTML = "";
+
+  for (let i = 0; i < 8; i++) {
+    const cloud = document.createElement("div");
+    cloud.classList.add("cloud");
+
+    const size = Math.random() * 100 + 80;
+
+    cloud.style.width = size + "px";
+    cloud.style.height = size / 2 + "px";
+    cloud.style.top = Math.random() * 80 + "vh";
+    cloud.style.left = Math.random() * 100 + "vw";
+    cloud.style.animationDuration = Math.random() * 20 + 20 + "s";
+
+    container.appendChild(cloud);
   }
 }
 
