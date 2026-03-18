@@ -79,12 +79,34 @@ async function getWeather(city) {
 }
 
 function handleSearch() {
-  const city = document.getElementById("searchInput").value;
+  const city = document.getElementById("searchInput").value.trim();
 
-  if (city.trim() === "") {
-    alert("Please enter a city");
+  if (city === "") {
+    showError("Please enter a city");
     return;
   }
 
+  saveCity(city);
   getWeather(city);
 }
+
+function showRecentCities() {
+  const dropdown = document.getElementById("recentCities");
+  const cities = JSON.parse(localStorage.getItem("cities")) || [];
+
+  dropdown.innerHTML = `<option value = "">Recent Searches</option>`;
+
+  cities.forEach((city) => {
+    dropdown.innerHTML += `<option value="${city}">${city}</option>`;
+  });
+}
+
+function selectCity() {
+  const city = document.getElementById("recentCities").value;
+
+  if (city) {
+    getWeather(city);
+  }
+}
+
+window.onload = showRecentCities;
