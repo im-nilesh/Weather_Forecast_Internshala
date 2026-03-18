@@ -38,6 +38,7 @@ function handleSearch() {
 
   saveCity(city);
   getWeather(city);
+  city = "";
 }
 
 // 🌍 Get Weather

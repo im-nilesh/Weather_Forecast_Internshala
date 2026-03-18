@@ -18,11 +18,39 @@
       body {
         font-family: "Poppins", sans-serif;
       }
+
+      .glass {
+        background: rgba(122, 119, 119, 0.15);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 247, 247, 0.571);
+      }
+
+      .glow {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .animate-gradient {
+        background-size: 300% 300%;
+        animation: gradientMove 10s ease infinite;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
     </style>
   </head>
 
   <body
-    class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#667eea] via-[#764ba2] to-[#6dd5ed] animate-gradient text-white"
+    class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#667eea] via-[#764ba2] to-[#6dd5ed] animate-gradient text-black"
   >
     <div class="max-w-6xl mx-auto p-6">
       <h1 class="text-3xl font-semibold mb-6">Weather Dashboard 🌤️</h1>
@@ -55,7 +83,7 @@
       <select
         id="recentCities"
         onchange="selectCity()"
-        class="p-2 rounded-lg bg-white/70 mt-3"
+        class="p-4 rounded-lg bg-blue-500/70 mt-3"
       >
         <option value="">Recent Searches</option>
       </select>
@@ -64,7 +92,7 @@
       <p id="errorMsg" class="text-red-500 mt-2 hidden"></p>
 
       <!-- Weather Card -->
-      <div class="bg-white/70 rounded-2xl p-6 shadow-lg mt-6">
+      <div class="bg-blue-300/70 rounded-2xl p-6 shadow-lg mt-6">
         <div
           class="flex flex-col md:flex-row justify-between items-center gap-6"
         >
@@ -72,28 +100,28 @@
           <div>
             <h2 id="cityName" class="text-2xl font-semibold">--</h2>
             <p id="temperature" class="text-5xl font-bold my-2">--°C</p>
-            <p id="condition" class="text-gray-600">--</p>
+            <p id="condition" class="text-black-600">--</p>
           </div>
 
           <!-- Right -->
           <div class="grid grid-cols-2 gap-4 text-center">
             <div>
-              <p class="text-gray-400">Humidity</p>
+              <p class="text-green-200">Humidity</p>
               <p id="humidity">--</p>
             </div>
 
             <div>
-              <p class="text-gray-400">Wind</p>
+              <p class="text-green-200">Wind</p>
               <p id="wind">--</p>
             </div>
 
             <div>
-              <p class="text-gray-400">Feels Like</p>
+              <p class="text-green-200">Feels Like</p>
               <p id="feelsLike">--</p>
             </div>
 
             <div>
-              <p class="text-gray-400">Pressure</p>
+              <p class="text-green-200">Pressure</p>
               <p id="pressure">--</p>
             </div>
           </div>
