@@ -1,3 +1,5 @@
+const apiKey = "b8f5c5684a89524b67418d88a6d5a8ee";
+
 function setWeatherTheme(condition) {
   const body = document.body;
 
@@ -16,17 +18,46 @@ function setWeatherTheme(condition) {
   }
 }
 
+function getCurrentLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(success, error);
+  } else {
+    showError("Geolocation not supported");
+  }
+}
+
+async function getWeatherByCoords(lat, lon) {
+  try {
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`,
+    );
+
+    const data = await res.json();
+    updateUI(data);
+  } catch {
+    showError("Failed to fetch location weather");
+  }
+}
+
+function success(position) {
+  const lat = position.coords.latitude;
+  const lon = position.coords.longitude;
+
+  getWeatherByCoords(lat, lon);
+}
+
+function error() {
+  showError("Location access denied");
+}
+
 function updateUI(data) {
   document.getElementById("cityName").innerText = data.name;
   document.getElementById("temperature").innerText =
     Math.round(data.main.temp) + "°C";
-  document.getElementById("condition").innerText =
-    data.weather[0].main;
+  document.getElementById("condition").innerText = data.weather[0].main;
 
   setWeatherTheme(data.weather[0].main);
 }
-
-const apiKey = "b8f5c5684a89524b67418d88a6d5a8ee";
 
 async function getWeather(city) {
   try {

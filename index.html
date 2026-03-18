@@ -1,118 +1,135 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <body class="font-poppins text-gray-800 min-h-screen">
+    <div class="max-w-6xl mx-auto p-6">
+      <h1 class="text-3xl font-semibold mb-6">Weather Dashboard 🌤️</h1>
 
-<body class="font-poppins text-gray-800 min-h-screen">
+      <!-- Search -->
 
-  <div class="max-w-6xl mx-auto p-6">
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="Search city..."
+        class="flex-1 p-3 rounded-xl bg-white/70 backdrop-blur-lg outline-none shadow-md"
+      />
 
-    <h1 class="text-3xl font-semibold mb-6">Weather Dashboard 🌤️</h1>
+      <button
+        onclick="handleSearch()"
+        class="px-5 py-3 rounded-xl m-3 text-white bg-gradient-to-r from-[#4facfe] to-[#00f2fe] shadow-md"
+      >
+        Search
+      </button>
 
-    <!-- Search -->
+      <button
+        onclick="getCurrentLocation()"
+        class="px-5 py-3 rounded-xl bg-white/70 shadow-md"
+      >
+        Use Current Location
+      </button>
 
-    <input id="searchInput" type="text" placeholder="Search city..."
-      class="flex-1 p-3 rounded-xl bg-white/70 backdrop-blur-lg outline-none shadow-md"/>
+      <!-- Weather Card -->
 
-    <button onclick="handleSearch()" class="px-5 py-3 rounded-xl m-3 text-white bg-gradient-to-r from-[#4facfe] to-[#00f2fe] shadow-md">
-      Search
-    </button>
+      <div
+        class="bg-white/70 backdrop-blur-lg rounded-2xl p-6 border border-white/40 shadow-lg mb-6"
+      >
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+          <!-- Left -->
 
-    <!-- Weather Card -->
-
-    <div class="bg-white/70 backdrop-blur-lg rounded-2xl p-6 border border-white/40 shadow-lg mb-6">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-
-        <!-- Left -->
-
-        <div>
-          <h2 id="cityName" class="text-2xl font-semibold text-gray-800">Bangalore</h2>
-          <p id="temperature" class="text-5xl font-bold my-2 text-gray-900">28°C</p>
-          <p id="condition" class="text-gray-600">Cloudy</p>
-        </div>
-
-        <!-- Right Extra Info -->
-
-        <div class="grid grid-cols-2 gap-4 text-center ">
           <div>
-            <p class="text-gray-400">Humidity</p>
-            <p class="text-lg font-semibold">70%</p>
+            <h2 id="cityName" class="text-2xl font-semibold text-gray-800">
+              Bangalore
+            </h2>
+            <p id="temperature" class="text-5xl font-bold my-2 text-gray-900">
+              28°C
+            </p>
+            <p id="condition" class="text-gray-600">Cloudy</p>
           </div>
-          <div>
-            <p class="text-gray-400">Wind</p>
-            <p class="text-lg font-semibold">12 km/h</p>
+
+          <!-- Right Extra Info -->
+
+          <div class="grid grid-cols-2 gap-4 text-center">
+            <div>
+              <p class="text-gray-400">Humidity</p>
+              <p class="text-lg font-semibold">70%</p>
+            </div>
+            <div>
+              <p class="text-gray-400">Wind</p>
+              <p class="text-lg font-semibold">12 km/h</p>
+            </div>
+            <div>
+              <p class="text-gray-400">Feels Like</p>
+              <p class="text-lg font-semibold">30°C</p>
+            </div>
+            <div>
+              <p class="text-gray-400">Pressure</p>
+              <p class="text-lg font-semibold">1012 hPa</p>
+            </div>
           </div>
-          <div>
-            <p class="text-gray-400">Feels Like</p>
-            <p class="text-lg font-semibold">30°C</p>
+        </div>
+
+        <!-- 5 Days Forecast -->
+
+        <h2 class="text-xl mb-4">5-Day Forecast</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+          <!-- Cards -->
+
+          <div
+            class="bg-white/10 backdrop-blur-lg rounded-xl p-4 text-center border border-white/20 hover:scale-105 transition duration-300"
+          >
+            <p class="text-gray-400">Mon</p>
+            <p class="text-2xl font-bold my-2">27°C</p>
+            <p class="text-gray-300">🌥️</p>
+            <p class="text-sm text-gray-400 mt-2">Humidity: 65%</p>
           </div>
-          <div>
-            <p class="text-gray-400">Pressure</p>
-            <p class="text-lg font-semibold">1012 hPa</p>
+
+          <div
+            class="bg-white/10 backdrop-blur-lg rounded-xl p-4 text-center border border-white/20 hover:scale-105 transition duration-300"
+          >
+            <p class="text-gray-400">Tue</p>
+            <p class="text-2xl font-bold my-2">29°C</p>
+            <p class="text-gray-300">☀️</p>
+            <p class="text-sm text-gray-400 mt-2">Humidity: 60%</p>
           </div>
-        </div>
-      </div>
 
-      <!-- 5 Days Forecast -->
+          <div
+            class="bg-white/10 backdrop-blur-lg rounded-xl p-4 text-center border border-white/20 hover:scale-105 transition duration-300"
+          >
+            <p class="text-gray-400">Wed</p>
+            <p class="text-2xl font-bold my-2">26°C</p>
+            <p class="text-gray-300">🌧️</p>
+            <p class="text-sm text-gray-400 mt-2">Humidity: 80%</p>
+          </div>
 
-      <h2 class="text-xl mb-4">5-Day Forecast</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+          <div
+            class="bg-white/10 backdrop-blur-lg rounded-xl p-4 text-center border border-white/20 hover:scale-105 transition duration-300"
+          >
+            <p class="text-gray-400">Thu</p>
+            <p class="text-2xl font-bold my-2">28°C</p>
+            <p class="text-gray-300">⛅</p>
+            <p class="text-sm text-gray-400 mt-2">Humidity: 70%</p>
+          </div>
 
-        <!-- Cards -->
-
-        <div
-          class="bg-white/10 backdrop-blur-lg rounded-xl p-4 text-center border border-white/20 hover:scale-105 transition duration-300">
-          <p class="text-gray-400">Mon</p>
-          <p class="text-2xl font-bold my-2">27°C</p>
-          <p class="text-gray-300">🌥️</p>
-          <p class="text-sm text-gray-400 mt-2">Humidity: 65%</p>
-        </div>
-
-        <div
-          class="bg-white/10 backdrop-blur-lg rounded-xl p-4 text-center border border-white/20 hover:scale-105 transition duration-300">
-          <p class="text-gray-400">Tue</p>
-          <p class="text-2xl font-bold my-2">29°C</p>
-          <p class="text-gray-300">☀️</p>
-          <p class="text-sm text-gray-400 mt-2">Humidity: 60%</p>
-        </div>
-
-        <div
-          class="bg-white/10 backdrop-blur-lg rounded-xl p-4 text-center border border-white/20 hover:scale-105 transition duration-300">
-          <p class="text-gray-400">Wed</p>
-          <p class="text-2xl font-bold my-2">26°C</p>
-          <p class="text-gray-300">🌧️</p>
-          <p class="text-sm text-gray-400 mt-2">Humidity: 80%</p>
-        </div>
-
-        <div
-          class="bg-white/10 backdrop-blur-lg rounded-xl p-4 text-center border border-white/20 hover:scale-105 transition duration-300">
-          <p class="text-gray-400">Thu</p>
-          <p class="text-2xl font-bold my-2">28°C</p>
-          <p class="text-gray-300">⛅</p>
-          <p class="text-sm text-gray-400 mt-2">Humidity: 70%</p>
-        </div>
-
-        <div
-          class="bg-white/10 backdrop-blur-lg rounded-xl p-4 text-center border border-white/20 hover:scale-105 transition duration-300">
-          <p class="text-gray-400">Fri</p>
-          <p class="text-2xl font-bold my-2">30°C</p>
-          <p class="text-gray-300">☀️</p>
-          <p class="text-sm text-gray-400 mt-2">Humidity: 55%</p>
+          <div
+            class="bg-white/10 backdrop-blur-lg rounded-xl p-4 text-center border border-white/20 hover:scale-105 transition duration-300"
+          >
+            <p class="text-gray-400">Fri</p>
+            <p class="text-2xl font-bold my-2">30°C</p>
+            <p class="text-gray-300">☀️</p>
+            <p class="text-sm text-gray-400 mt-2">Humidity: 55%</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
 
-  <script src="script.js"></script>
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
