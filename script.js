@@ -56,7 +56,7 @@ function handleSearch() {
 
   saveCity(city);
   getWeather(city);
-  city = "";
+  document.getElementById("searchInput").value = "";
 }
 
 // 🌍 Get Weather
@@ -83,8 +83,6 @@ function updateUI(data) {
 
   document.getElementById("temperature").innerText = currentTemp + "°C";
   document.getElementById("cityName").innerText = data.name;
-  document.getElementById("temperature").innerText =
-    Math.round(data.main.temp) + "°C";
   document.getElementById("condition").innerText = data.weather[0].main;
 
   document.getElementById("humidity").innerText = data.main.humidity + "%";
