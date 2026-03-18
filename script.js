@@ -1,4 +1,6 @@
 const apiKey = "b8f5c5684a89524b67418d88a6d5a8ee";
+let isCelsius = true;
+let currentTemp = 0;
 
 // 🌈 Dynamic Theme
 function setWeatherTheme(condition) {
@@ -77,6 +79,9 @@ async function getWeather(city) {
 
 // 📊 Update UI
 function updateUI(data) {
+  currentTemp = Math.round(data.main.temp);
+
+  document.getElementById("temperature").innerText = currentTemp + "°C";
   document.getElementById("cityName").innerText = data.name;
   document.getElementById("temperature").innerText =
     Math.round(data.main.temp) + "°C";
@@ -96,6 +101,23 @@ function updateUI(data) {
   if (data.main.temp > 40) {
     showError("🔥 Extreme Heat Warning!");
   }
+}
+
+//Temp C/F
+function toggleTemp() {
+  const tempEl = document.getElementById("temperature");
+  const btn = event.target;
+
+  if (isCelsius) {
+    const f = ((currentTemp * 9) / 5 + 32).toFixed(1);
+    tempEl.innerText = f + "°F";
+    btn.innerText = "Switch to °C";
+  } else {
+    tempEl.innerText = currentTemp + "°C";
+    btn.innerText = "Switch to °F";
+  }
+
+  isCelsius = !isCelsius;
 }
 
 // 📅 Forecast
