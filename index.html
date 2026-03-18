@@ -19,6 +19,50 @@
         font-family: "Poppins", sans-serif;
       }
 
+      .rain-drop {
+        position: absolute;
+        width: 2px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.5);
+        animation: fall linear infinite;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-100px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(100vh);
+          opacity: 1;
+        }
+      }
+
+      #sunGlow {
+        background: radial-gradient(
+          circle,
+          rgba(255, 223, 0, 0.8),
+          rgba(255, 223, 0, 0)
+        );
+        filter: blur(40px);
+        animation: pulse 3s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+      }
+
       .glass {
         background: rgba(122, 119, 119, 0.15);
         backdrop-filter: blur(20px);
@@ -52,10 +96,24 @@
   <body
     class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#667eea] via-[#764ba2] to-[#6dd5ed] animate-gradient text-black"
   >
-    <div class="w-full max-w-5xl p-6">
+    <!-- 🌧️ Rain -->
+    <div
+      id="rainContainer"
+      class="fixed inset-0 pointer-events-none hidden z-0"
+    ></div>
+
+    <!-- 🌤️ Sun -->
+    <div
+      id="sunGlow"
+      class="hidden fixed top-10 right-10 w-40 h-40 rounded-full z-0"
+    ></div>
+
+    <!-- ✅ MAIN CONTENT -->
+    <div class="relative z-10 max-w-6xl mx-auto p-6">
       <h1 class="text-4xl font-bold mb-6 text-center drop-shadow-lg">
         🌤️ Weather Dashboard
       </h1>
+
       <!-- Search -->
       <div class="flex flex-col sm:flex-row gap-3 mb-4">
         <input
@@ -93,19 +151,23 @@
       <p id="errorMsg" class="text-red-500 mt-2 hidden"></p>
 
       <!-- Weather Card -->
-      <div class="bg-blue-300/70 rounded-2xl p-6 shadow-lg mt-6">
+      <div class="glass glow p-8 mt-6">
         <div
           class="flex flex-col md:flex-row justify-between items-center gap-6"
         >
           <!-- Left -->
           <div>
-            <h2 id="cityName" class="text-2xl font-semibold">--</h2>
-            <p id="temperature" class="text-5xl font-bold my-2">--°C</p>
-            <p id="condition" class="text-black-600">--</p>
+            <h2 id="cityName" class="text-3xl font-semibold">--</h2>
+
+            <p id="temperature" class="text-6xl font-bold my-2 tracking-wide">
+              --°C
+            </p>
+
+            <p id="condition" class="text-white/80 text-lg">--</p>
           </div>
 
           <!-- Right -->
-          <div class="grid grid-cols-2 gap-4 text-center">
+          <div class="grid grid-cols-2 gap-6 text-center text-white/90">
             <div>
               <p class="text-green-200">Humidity</p>
               <p id="humidity">--</p>

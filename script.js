@@ -3,13 +3,24 @@ const apiKey = "b8f5c5684a89524b67418d88a6d5a8ee";
 // 🌈 Dynamic Theme
 function setWeatherTheme(condition) {
   const body = document.body;
+  const rain = document.getElementById("rainContainer");
+  const sun = document.getElementById("sunGlow");
+
+  // Reset
+  rain.classList.add("hidden");
+  sun.classList.add("hidden");
 
   if (condition === "Rain") {
     body.style.background =
       "linear-gradient(to bottom right, #4b6cb7, #182848)";
+
+    rain.classList.remove("hidden");
+    createRain();
   } else if (condition === "Clear") {
     body.style.background =
       "linear-gradient(to bottom right, #fceabb, #f8b500)";
+
+    sun.classList.remove("hidden");
   } else if (condition === "Clouds") {
     body.style.background =
       "linear-gradient(to bottom right, #d7d2cc, #304352)";
@@ -112,13 +123,13 @@ function updateForecastUI(data) {
     const icon = day.weather[0].icon;
 
     container.innerHTML += `
-      <div class="bg-white/70 rounded-xl p-4 text-center shadow-md hover:scale-105 transition">
-        <p>${date}</p>
-        <img src="https://openweathermap.org/img/wn/${icon}@2x.png"/>
-        <p class="font-bold">${temp}°C</p>
-        <p class="text-sm">${humidity}%</p>
-      </div>
-    `;
+  <div class="glass p-4 text-center hover:scale-105 transition glow">
+    <p class="text-white/80">${date}</p>
+    <img src="https://openweathermap.org/img/wn/${icon}@2x.png" class="mx-auto"/>
+    <p class="text-xl font-bold">${temp}°C</p>
+    <p class="text-sm text-white/70">${humidity}%</p>
+  </div>
+`;
   });
 }
 
@@ -164,6 +175,23 @@ function showRecentCities() {
 function selectCity() {
   const city = document.getElementById("recentCities").value;
   if (city) getWeather(city);
+}
+
+//UI For Rain Effects
+function createRain() {
+  const container = document.getElementById("rainContainer");
+  container.innerHTML = "";
+
+  for (let i = 0; i < 100; i++) {
+    const drop = document.createElement("div");
+    drop.classList.add("rain-drop");
+
+    drop.style.left = Math.random() * 100 + "vw";
+    drop.style.animationDuration = Math.random() * 1 + 0.5 + "s";
+    drop.style.opacity = Math.random();
+
+    container.appendChild(drop);
+  }
 }
 
 window.onload = showRecentCities;
